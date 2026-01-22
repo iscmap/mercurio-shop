@@ -1,4 +1,3 @@
 package com.mario.alba.template.domain;
 
-public interface ExampleRepositoryPort {
-}
+public interface ExampleRepositoryPort {}

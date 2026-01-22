@@ -1,4 +1,3 @@
 package com.mario.alba.template;
 
-public class ServiceTemplateApplication {
-}
+public class ServiceTemplateApplication {}

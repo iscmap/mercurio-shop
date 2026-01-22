@@ -1,4 +1,3 @@
 package com.mario.alba.template.api;
 
-public class HealthController {
-}
+public class HealthController {}
