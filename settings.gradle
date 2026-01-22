@@ -1,0 +1,4 @@
+rootProject.name = "mercurio-shop"
+
+include "platform-common"
+include "service-template"
