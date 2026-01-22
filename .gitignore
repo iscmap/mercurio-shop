@@ -31,7 +31,6 @@ out/
 
 # Env files
 .env
-.env.*
 *.local
 
 # Logs
