@@ -1,16 +1,73 @@
+# ======================================================
+# Mercurio Shop - Service Template (Baseline Config)
+# ======================================================
+# This file contains ONLY safe defaults shared across all
+# environments (local/dev/prod).
+#
+# Environment-specific values belong in:
+# - application-local.yml
+# - application-dev.yml
+# - application-prod.yml
+# ======================================================
+
+app:
+  environment: default
+
 server:
   port: 8080
 
 spring:
   application:
     name: service-template
+
+  # ----------------------------
+  # Database (values overridden per profile)
+  # ----------------------------
+  datasource:
+    url: ${DB_URL:}
+    username: ${DB_USER:}
+    password: ${DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+  flyway:
+    enabled: false
+
+  # ----------------------------
+  # Redis (values overridden per profile)
+  # ----------------------------
+  data:
+    redis:
+      host: ${REDIS_HOST:}
+      port: ${REDIS_PORT:6379}
+
+# ----------------------------
+# AWS Region (shared)
+# ----------------------------
+aws:
+  region: ${AWS_REGION:us-east-1}
+
+# ----------------------------
+# Actuator (shared defaults)
+# ----------------------------
 management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: health,info
 
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# ----------------------------
+# Logging (shared defaults)
+# ----------------------------
 logging:
   level:
-    root: info
-    com.mario.alba: DEBUG
+    root: INFO
+    com.mario.alba: INFO

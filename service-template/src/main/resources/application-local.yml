@@ -1,0 +1,68 @@
+app:
+  environment: local
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: service-template
+
+  # ----------------------------
+  # PostgreSQL (Local Docker)
+  # ----------------------------
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:mercurio}
+    username: ${POSTGRES_USER:mercurio}
+    password: ${POSTGRES_PASSWORD:mercurio}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Flyway will be enabled later when we add migrations
+  flyway:
+    enabled: false
+
+  # ----------------------------
+  # Redis (Local Docker)
+  # ----------------------------
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+# ----------------------------
+# LocalStack (AWS Local Emulator)
+# ----------------------------
+aws:
+  region: ${AWS_REGION:us-east-1}
+  localstack:
+    endpoint: http://${LOCALSTACK_HOST:localhost}:${LOCALSTACK_PORT:4566}
+
+# ----------------------------
+# Actuator (Health/Info)
+# ----------------------------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  endpoint:
+    health:
+      show-details: always
+
+# ----------------------------
+# Logging (Local Developer Friendly)
+# ----------------------------
+logging:
+  level:
+    root: INFO
+    com.mario.alba: DEBUG
+    org.springframework.web: INFO
